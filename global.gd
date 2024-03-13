@@ -6,6 +6,8 @@ enum source_tile {Terrain, Blocks, Buildings}
 
 const img_directory = ["res://img/terrains", "res://img/blocks", "res://img/buildings"]
 const SAVE_FILE_PATH = "res://save/save.dat"
+const img_recept_directory = "res://img/recipes/"
+const img_block_directory = "res://img/blocks/"
 
 const world_size: Vector2i = Vector2i(100, 100)
 const tile_size: Vector2i = Vector2i(64, 64)

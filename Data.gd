@@ -55,3 +55,4 @@ func get_by_id(type, id):
 func get_by_name(type, name_res):
 	var id = get_id_by_name(type, name_res)
 	return get_by_id(type, id)
+

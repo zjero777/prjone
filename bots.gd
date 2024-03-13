@@ -22,7 +22,7 @@ func _process(delta):
 
 func add(_type: int, _coord: Vector2i):
 	var cells = get_node("../Cells_data")
-	print_debug(cells.get_cell(_coord))
+	#print_debug(cells.get_cell(_coord))
 	if cells.get_cell(_coord).Buildings: 
 		push_warning("Не могу установить бота, не помещается")
 		return

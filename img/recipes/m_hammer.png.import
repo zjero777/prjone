@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g5373mf8trje"
-path="res://.godot/imported/b2.png-0e9e115380bb45e4b61dd50e1a7f00b1.ctex"
+uid="uid://q8wq03rk573l"
+path="res://.godot/imported/m_hammer.png-eb4f0a092de8575b511a4756bdea0e81.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://img/recipes/b2.png"
-dest_files=["res://.godot/imported/b2.png-0e9e115380bb45e4b61dd50e1a7f00b1.ctex"]
+source_file="res://img/recipes/m_hammer.png"
+dest_files=["res://.godot/imported/m_hammer.png-eb4f0a092de8575b511a4756bdea0e81.ctex"]
 
 [params]
 

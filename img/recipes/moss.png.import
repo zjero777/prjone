@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g5373mf8trje"
-path="res://.godot/imported/b2.png-0e9e115380bb45e4b61dd50e1a7f00b1.ctex"
+uid="uid://ctxhd0un8flt8"
+path="res://.godot/imported/moss.png-470a0b3f408d92b23326fd22af9fd970.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://img/recipes/b2.png"
-dest_files=["res://.godot/imported/b2.png-0e9e115380bb45e4b61dd50e1a7f00b1.ctex"]
+source_file="res://img/recipes/moss.png"
+dest_files=["res://.godot/imported/moss.png-470a0b3f408d92b23326fd22af9fd970.ctex"]
 
 [params]
 
