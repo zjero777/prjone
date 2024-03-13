@@ -1,6 +1,6 @@
 class_name Item
 
-extends Node
+
 
 var	resource: Prod_resource
 var count: int

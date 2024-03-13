@@ -1,5 +1,5 @@
 class_name Recept
-extends Node
+
 
 var id: int
 var recept_name: String

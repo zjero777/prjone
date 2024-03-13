@@ -1,32 +1,32 @@
 [gd_scene load_steps=8 format=3 uid="uid://cutrwtln1e2ni"]
 
-[ext_resource type="Script" path="res://script/main.gd" id="1_7sls1"]
-[ext_resource type="Script" path="res://script/cells_data.gd" id="2_8idmq"]
-[ext_resource type="Script" path="res://script/Factories.gd" id="3_hcfuu"]
-[ext_resource type="Script" path="res://script/bots.gd" id="4_mtql2"]
-[ext_resource type="Script" path="res://script/camera.gd" id="5_2k2ly"]
-[ext_resource type="PackedScene" uid="uid://vaudtwu5wvn8" path="res://scene/bg.tscn" id="6_whv3a"]
-[ext_resource type="PackedScene" uid="uid://5uocvahkc0i" path="res://scene/ui.tscn" id="7_jq5fk"]
+[ext_resource type="PackedScene" uid="uid://5uocvahkc0i" path="res://scene/ui.tscn" id="1_hv4fb"]
+[ext_resource type="Script" path="res://script/main.gd" id="1_klxy0"]
+[ext_resource type="Script" path="res://script/cells_data.gd" id="2_3k617"]
+[ext_resource type="Script" path="res://script/Factories.gd" id="3_lfx3v"]
+[ext_resource type="Script" path="res://script/bots.gd" id="4_ha67i"]
+[ext_resource type="Script" path="res://script/camera.gd" id="5_s0lqs"]
+[ext_resource type="PackedScene" uid="uid://vaudtwu5wvn8" path="res://scene/bg.tscn" id="6_dg2u7"]
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_7sls1")
+script = ExtResource("1_klxy0")
 metadata/_edit_lock_ = true
 
 [node name="Cells_data" type="Node" parent="."]
-script = ExtResource("2_8idmq")
+script = ExtResource("2_3k617")
 
 [node name="Factories" type="Node" parent="."]
-script = ExtResource("3_hcfuu")
+script = ExtResource("3_lfx3v")
 
 [node name="Bots" type="Node" parent="."]
-script = ExtResource("4_mtql2")
+script = ExtResource("4_ha67i")
 
 [node name="Camera" type="Camera2D" parent="."]
-script = ExtResource("5_2k2ly")
+script = ExtResource("5_s0lqs")
 metadata/_edit_lock_ = true
 
-[node name="Bg" parent="." instance=ExtResource("6_whv3a")]
+[node name="Bg" parent="." instance=ExtResource("6_dg2u7")]
 metadata/_edit_lock_ = true
 
-[node name="UI" parent="." instance=ExtResource("7_jq5fk")]
+[node name="UI" parent="." instance=ExtResource("1_hv4fb")]
 metadata/_edit_lock_ = true

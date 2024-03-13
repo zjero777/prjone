@@ -1,5 +1,5 @@
 class_name Prod_resource
-extends Node
+extends Object
 
 var id: int
 var name_resource: String
