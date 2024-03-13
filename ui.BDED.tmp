@@ -1,0 +1,494 @@
+[gd_scene load_steps=10 format=3 uid="uid://5uocvahkc0i"]
+
+[ext_resource type="Script" path="res://ui.gd" id="1_s7adk"]
+[ext_resource type="Script" path="res://fps.gd" id="1_vnghm"]
+[ext_resource type="Script" path="res://Info.gd" id="3_plrvi"]
+[ext_resource type="PackedScene" uid="uid://bg2yqro28ppg1" path="res://res16.tscn" id="3_uw8qj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_iqc27"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_4nsox"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wiydk"]
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_7044n"]
+font_size = 11
+
+[sub_resource type="LabelSettings" id="LabelSettings_s5go4"]
+font_size = 11
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s7adk")
+
+[node name="Cursor" type="ReferenceRect" parent="."]
+visible = false
+z_index = 1
+layout_mode = 0
+border_color = Color(1, 1, 1, 1)
+editor_only = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FPS" type="Label" parent="CanvasLayer"]
+offset_right = 1.0
+offset_bottom = 23.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+horizontal_alignment = 3
+script = ExtResource("1_vnghm")
+
+[node name="Info" type="Panel" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -215.0
+offset_bottom = 720.0
+grow_horizontal = 0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+script = ExtResource("3_plrvi")
+
+[node name="Info" type="VBoxContainer" parent="CanvasLayer/Info"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Terrain" type="Panel" parent="CanvasLayer/Info/Info"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Info/Info/Terrain"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 92.0
+grow_horizontal = 2
+
+[node name="Header" type="ColorRect" parent="CanvasLayer/Info/Info/Terrain/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_vertical = 2
+color = Color(1, 1, 1, 0.219608)
+
+[node name="Label" type="Label" parent="CanvasLayer/Info/Info/Terrain/VBoxContainer/Header"]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 215.0
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_vertical = 0
+text = "Terrain"
+label_settings = SubResource("LabelSettings_iqc27")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Info/Info/Terrain/VBoxContainer"]
+top_level = true
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Info/Info/Terrain/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="VSeparator2" type="VSeparator" parent="CanvasLayer/Info/Info/Terrain/VBoxContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="pic" type="TextureRect" parent="CanvasLayer/Info/Info/Terrain/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("ImageTexture_4nsox")
+
+[node name="VSeparator3" type="VSeparator" parent="CanvasLayer/Info/Info/Terrain/VBoxContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="VSeparator" type="VBoxContainer" parent="CanvasLayer/Info/Info/Terrain/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Name_str" type="Label" parent="CanvasLayer/Info/Info/Terrain/VBoxContainer/HBoxContainer/VSeparator"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Название 2 "
+label_settings = SubResource("LabelSettings_wiydk")
+
+[node name="Coord_str" type="Label" parent="CanvasLayer/Info/Info/Terrain/VBoxContainer/HBoxContainer/VSeparator"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "(1,2)"
+label_settings = SubResource("LabelSettings_7044n")
+
+[node name="UI_Expected_res_Header" type="Label" parent="CanvasLayer/Info/Info/Terrain/VBoxContainer"]
+layout_mode = 2
+text = "Ожидаемые ресурсы:"
+label_settings = SubResource("LabelSettings_s5go4")
+horizontal_alignment = 1
+
+[node name="Res_bar" type="HBoxContainer" parent="CanvasLayer/Info/Info/Terrain/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="pic" parent="CanvasLayer/Info/Info/Terrain/VBoxContainer/Res_bar" instance=ExtResource("3_uw8qj")]
+visible = false
+layout_mode = 2
+
+[node name="UI_working_bar" type="HBoxContainer" parent="CanvasLayer/Info/Info/Terrain/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="UI_working_Header" type="Label" parent="CanvasLayer/Info/Info/Terrain/VBoxContainer/UI_working_bar"]
+layout_mode = 2
+text = "Время добычи (сек):"
+label_settings = SubResource("LabelSettings_s5go4")
+
+[node name="UI_working" type="Label" parent="CanvasLayer/Info/Info/Terrain/VBoxContainer/UI_working_bar"]
+layout_mode = 2
+text = "15"
+label_settings = SubResource("LabelSettings_s5go4")
+
+[node name="Block" type="Panel" parent="CanvasLayer/Info/Info"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Info/Info/Block"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 92.0
+grow_horizontal = 2
+
+[node name="Header" type="ColorRect" parent="CanvasLayer/Info/Info/Block/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_vertical = 2
+color = Color(1, 1, 1, 0.219608)
+
+[node name="Label" type="Label" parent="CanvasLayer/Info/Info/Block/VBoxContainer/Header"]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 215.0
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_vertical = 0
+text = "Block"
+label_settings = SubResource("LabelSettings_iqc27")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Info/Info/Block/VBoxContainer"]
+top_level = true
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Info/Info/Block/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="VSeparator2" type="VSeparator" parent="CanvasLayer/Info/Info/Block/VBoxContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="pic" type="TextureRect" parent="CanvasLayer/Info/Info/Block/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("ImageTexture_4nsox")
+
+[node name="VSeparator3" type="VSeparator" parent="CanvasLayer/Info/Info/Block/VBoxContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="VSeparator" type="VBoxContainer" parent="CanvasLayer/Info/Info/Block/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Name_str" type="Label" parent="CanvasLayer/Info/Info/Block/VBoxContainer/HBoxContainer/VSeparator"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Название 2 "
+label_settings = SubResource("LabelSettings_wiydk")
+
+[node name="Coord_str" type="Label" parent="CanvasLayer/Info/Info/Block/VBoxContainer/HBoxContainer/VSeparator"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "(1,2)"
+label_settings = SubResource("LabelSettings_7044n")
+
+[node name="UI_Expected_res_Header" type="Label" parent="CanvasLayer/Info/Info/Block/VBoxContainer"]
+layout_mode = 2
+text = "Ожидаемые ресурсы:"
+label_settings = SubResource("LabelSettings_s5go4")
+horizontal_alignment = 1
+
+[node name="Res_bar" type="HBoxContainer" parent="CanvasLayer/Info/Info/Block/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="pic" parent="CanvasLayer/Info/Info/Block/VBoxContainer/Res_bar" instance=ExtResource("3_uw8qj")]
+visible = false
+layout_mode = 2
+
+[node name="UI_working_bar" type="HBoxContainer" parent="CanvasLayer/Info/Info/Block/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="UI_working_Header" type="Label" parent="CanvasLayer/Info/Info/Block/VBoxContainer/UI_working_bar"]
+layout_mode = 2
+text = "Время добычи (сек):"
+label_settings = SubResource("LabelSettings_s5go4")
+
+[node name="UI_working" type="Label" parent="CanvasLayer/Info/Info/Block/VBoxContainer/UI_working_bar"]
+layout_mode = 2
+text = "15"
+label_settings = SubResource("LabelSettings_s5go4")
+
+[node name="test_info" type="Panel" parent="."]
+visible = false
+layout_mode = 2
+offset_left = 985.0
+offset_top = 362.0
+offset_right = 1200.0
+offset_bottom = 720.0
+size_flags_vertical = 3
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="test_info"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 122.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 14
+
+[node name="VBoxContainer" type="VBoxContainer" parent="test_info/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Label5" type="RichTextLabel" parent="test_info/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "Координаты"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Label" type="RichTextLabel" parent="test_info/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "Вода"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Label2" type="RichTextLabel" parent="test_info/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "Минерал"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Label3" type="RichTextLabel" parent="test_info/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "Воздух"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Label4" type="RichTextLabel" parent="test_info/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "Органика"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Label6" type="RichTextLabel" parent="test_info/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "Масса"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="test_info/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="lb_coord_value" type="RichTextLabel" parent="test_info/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "()"
+fit_content = true
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="lb_water_value" type="RichTextLabel" parent="test_info/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "1"
+fit_content = true
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="lb_mineral_value" type="RichTextLabel" parent="test_info/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "0"
+fit_content = true
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="lb_air_value" type="RichTextLabel" parent="test_info/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "0,5"
+fit_content = true
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="lb_organic_value" type="RichTextLabel" parent="test_info/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "0,01
+"
+fit_content = true
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="lb_mass_value" type="RichTextLabel" parent="test_info/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "0,01
+"
+fit_content = true
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="test_info"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 122.0
+grow_horizontal = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 14
+
+[node name="VBoxContainer" type="VBoxContainer" parent="test_info/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label5" type="RichTextLabel" parent="test_info/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "Координаты"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Label" type="RichTextLabel" parent="test_info/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "Вода"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Label2" type="RichTextLabel" parent="test_info/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "Минерал"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Label3" type="RichTextLabel" parent="test_info/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "Воздух"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Label4" type="RichTextLabel" parent="test_info/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "Органика"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Label6" type="RichTextLabel" parent="test_info/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "Масса"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="test_info/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="lb_coord_value" type="RichTextLabel" parent="test_info/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "()"
+fit_content = true
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="lb_water_value" type="RichTextLabel" parent="test_info/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "1"
+fit_content = true
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="lb_mineral_value" type="RichTextLabel" parent="test_info/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "0"
+fit_content = true
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="lb_air_value" type="RichTextLabel" parent="test_info/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "0,5"
+fit_content = true
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="lb_organic_value" type="RichTextLabel" parent="test_info/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "0,01
+"
+fit_content = true
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="lb_mass_value" type="RichTextLabel" parent="test_info/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "0,01
+"
+fit_content = true
+autowrap_mode = 0
+shortcut_keys_enabled = false

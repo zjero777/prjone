@@ -1,0 +1,37 @@
+[
+    {
+        "id": 0,
+        "name":"inspect_in",
+        "go_succ": 1,
+        "go_fail": 4,
+        "msg_fail": "Не хватает ресурсов"
+    },
+    {            
+        "id": 1,
+        "name":"begin_prod",
+        "go_succ": 2,
+        "go_fail": 0,
+        "msg_fail": "Не хватает ресурсов для производства"
+    },
+    {            
+        "id": 2,
+        "name":"wait_for_complete",
+        "go_succ": 3,
+        "go_fail": 2,
+        "msg_fail": "Идет производство..."
+    },
+    {            
+        "id": 3,
+        "name":"inspect_out",
+        "go_succ": 4,
+        "go_fail": 3,
+        "msg_fail": "Некуда класть"
+
+    },
+    {            
+        "id": 4,
+        "name":"inspect_on_remove",
+        "go_fail": 0,
+        "msg_fail": "Не хватает ресурсов"
+    }    
+]

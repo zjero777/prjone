@@ -1,0 +1,312 @@
+[gd_scene load_steps=14 format=3 uid="uid://5uocvahkc0i"]
+
+[ext_resource type="Script" path="res://ui.gd" id="1_s7adk"]
+[ext_resource type="Script" path="res://fps.gd" id="1_vnghm"]
+[ext_resource type="Script" path="res://info.gd" id="3_1uqvu"]
+[ext_resource type="Texture2D" uid="uid://bm316j8qbvq4q" path="res://img/buildings/a_observatory.png" id="4_pc2v5"]
+[ext_resource type="Texture2D" uid="uid://4t372wculxtk" path="res://icon.svg" id="4_sg1xi"]
+[ext_resource type="Texture2D" uid="uid://qkwpb7hykh8o" path="res://img/images.png" id="5_8a2lf"]
+[ext_resource type="Texture2D" uid="uid://cd03prxw30cmg" path="res://img/383745-200.png" id="5_lyphu"]
+[ext_resource type="Texture2D" uid="uid://n6e8dgs7q4n5" path="res://img/5793865-200.png" id="6_l00dv"]
+[ext_resource type="Texture2D" uid="uid://b1htckhiamrm6" path="res://img/dig_plan.png" id="6_n5ks4"]
+[ext_resource type="Script" path="res://panel_ground.gd" id="10_vedk5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_41ier"]
+bg_color = Color(0.188235, 0.188235, 0.188235, 0.917647)
+
+[sub_resource type="LabelSettings" id="LabelSettings_skosk"]
+font_size = 15
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wqvjr"]
+font_size = 10
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s7adk")
+
+[node name="Cursor" type="ReferenceRect" parent="."]
+visible = false
+z_index = 1
+layout_mode = 0
+border_color = Color(1, 1, 1, 1)
+editor_only = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FPS" type="Label" parent="CanvasLayer"]
+offset_right = 1.0
+offset_bottom = 23.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+horizontal_alignment = 3
+script = ExtResource("1_vnghm")
+
+[node name="UI_Ground" type="PanelContainer" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_right = 0.827
+anchor_bottom = 1.0
+offset_right = -0.400024
+mouse_filter = 1
+script = ExtResource("10_vedk5")
+
+[node name="Info" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -208.0
+offset_right = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_41ier")
+script = ExtResource("3_1uqvu")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Info"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Info/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Building" type="VBoxContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="Building_View" type="MarginContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building/Building_View"]
+layout_mode = 2
+
+[node name="bl_pic" type="TextureRect" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building/Building_View/VBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("4_pc2v5")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="bl_name" type="Label" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building/Building_View/VBoxContainer"]
+layout_mode = 2
+text = "Название"
+label_settings = SubResource("LabelSettings_skosk")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building/Building_View"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Demolition" type="MarginContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building/Demolition"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="icon" type="TextureRect" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building/Demolition/HBoxContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_8a2lf")
+expand_mode = 1
+
+[node name="bl_count" type="Label" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building/Demolition/HBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+text = "3 сек."
+label_settings = SubResource("LabelSettings_wqvjr")
+
+[node name="Effeciency" type="MarginContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building/Effeciency"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="icon" type="TextureRect" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building/Effeciency/HBoxContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_n5ks4")
+expand_mode = 1
+
+[node name="bl_eff" type="Label" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building/Effeciency/HBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+text = "3 сек."
+label_settings = SubResource("LabelSettings_wqvjr")
+
+[node name="Block" type="VBoxContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="Block_View" type="MarginContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Block"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Block/Block_View"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="b_pic" type="TextureRect" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Block/Block_View/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("4_sg1xi")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Block/Block_View/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="b_name" type="Label" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Block/Block_View/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Название"
+label_settings = SubResource("LabelSettings_skosk")
+
+[node name="Demolition" type="MarginContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Block"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Block/Demolition"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="icon" type="TextureRect" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Block/Demolition/HBoxContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_8a2lf")
+expand_mode = 1
+
+[node name="b_count" type="Label" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Block/Demolition/HBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+text = "3 сек."
+label_settings = SubResource("LabelSettings_wqvjr")
+
+[node name="Terrain" type="VBoxContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="Terrain_View" type="MarginContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Terrain"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Terrain/Terrain_View"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="t_pic" type="TextureRect" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Terrain/Terrain_View/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("4_sg1xi")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Terrain/Terrain_View/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="t_name" type="Label" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Terrain/Terrain_View/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Название"
+label_settings = SubResource("LabelSettings_skosk")
+
+[node name="coord" type="Label" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Terrain/Terrain_View/HBoxContainer/VBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+text = "(12, 23)"
+label_settings = SubResource("LabelSettings_wqvjr")
+
+[node name="Working" type="MarginContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Terrain"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Terrain/Working"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="icon" type="TextureRect" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Terrain/Working/HBoxContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_l00dv")
+expand_mode = 1
+
+[node name="t_count" type="Label" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Terrain/Working/HBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+text = "3 сек."
+label_settings = SubResource("LabelSettings_wqvjr")
+
+[node name="Expected" type="MarginContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Terrain"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Terrain/Expected"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="icon" type="TextureRect" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Terrain/Expected/HBoxContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_lyphu")
+expand_mode = 1
+
+[node name="UI_Res_bar" type="HFlowContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Terrain/Expected/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 5
