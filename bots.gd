@@ -26,7 +26,7 @@ func add(_type: int, _coord: Vector2i):
 	if cells.get_cell(_coord).Buildings: 
 		push_warning("Не могу установить бота, не помещается")
 		return
-	var bot = preload("res://scene/bot.tscn").instantiate()
+	var bot = preload("res://bot.tscn").instantiate()
 	#var bot: Bot = Bot.new()
 	bot.setup(_type, _coord)
 	bot.connect("bot_add", _on_bot_add)	

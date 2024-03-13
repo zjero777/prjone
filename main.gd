@@ -7,7 +7,7 @@ var Ground: TileMap
 func _init():
 	Ground = TileMap.new()
 	Ground.name = "Ground"
-	var ground_script = preload("res://script/ground.gd")
+	var ground_script = load("res://ground.gd")
 	Ground.set_script(ground_script)
 	add_child(Ground)
 	

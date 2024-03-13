@@ -39,9 +39,10 @@ func _init():
 
 	#generate sources by data
 	#id_source, data_key, path to images
-	add_to_tileset(0, "terrain_type", "res://img/terrains")
-	add_to_tileset(1, "block_type", "res://img/blocks")
-	add_to_tileset(2, "factory_type", "res://img/buildings")
+	
+	add_to_tileset(0, Data.data.terrain_type, "res://img/terrains")
+	add_to_tileset(1, Data.data.block_type, "res://img/blocks")
+	add_to_tileset(2, Data.data.factory_type, "res://img/buildings")
 	
 
 func _ready():
@@ -111,7 +112,7 @@ func _unhandled_input(event):
 	
 
 	if event.is_action_pressed("select"):
-		print_debug(mouse_hover_tile)
+		#print_debug(mouse_hover_tile)
 		bots.order(0, "move", mouse_hover_tile)
 		pass
 		
@@ -135,7 +136,7 @@ func generate_expected_res_info(UI_Container, item_list):
 	# create and hide info scene piture game ressource (pic+text)
 	if UI_Container.get_child_count()<item_list.size():
 		for i in range(item_list.size()):
-			var res16 = preload("res://scene/pic16.tscn").instantiate()
+			var res16 = preload("res://pic16.tscn").instantiate()
 			res16.visible = false
 			UI_Container.add_child(res16)
 	
@@ -155,14 +156,14 @@ func generate_expected_res_info(UI_Container, item_list):
 func add_size_left(size_square, new_add_square):
 	return(Vector2i(size_square.x+new_add_square.x, max(size_square.y, new_add_square.y)))
 
-func add_to_tileset(source_id, datakey, dir):
+func add_to_tileset(source_id, list, dir):
 #tile_set, id source, data_key, directory	
-	var list = Data.data[datakey]
+	
 	#var tile_source: TileSetAtlasSource = tile_set.get_source(source_id)
 
 	var tile_source: TileSetAtlasSource = TileSetAtlasSource.new()
 	tile_set.add_source(tile_source, source_id)
-	tile_source.resource_name = datakey
+	#tile_source.resource_name = datakey
 
 	# create image from files directory
 	var dynImage: Image = Image.create(64,64,false,Image.FORMAT_RGBA8)

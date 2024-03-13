@@ -1,15 +1,15 @@
 [gd_scene load_steps=14 format=3 uid="uid://5uocvahkc0i"]
 
-[ext_resource type="Script" path="res://script/ui.gd" id="1_s7adk"]
-[ext_resource type="Script" path="res://script/fps.gd" id="1_vnghm"]
-[ext_resource type="Script" path="res://script/info.gd" id="3_1uqvu"]
+[ext_resource type="Script" path="res://ui.gd" id="1_s7adk"]
+[ext_resource type="Script" path="res://fps.gd" id="1_vnghm"]
+[ext_resource type="Script" path="res://info.gd" id="3_1uqvu"]
 [ext_resource type="Texture2D" uid="uid://bm316j8qbvq4q" path="res://img/buildings/a_observatory.png" id="4_pc2v5"]
 [ext_resource type="Texture2D" uid="uid://4t372wculxtk" path="res://icon.svg" id="4_sg1xi"]
 [ext_resource type="Texture2D" uid="uid://qkwpb7hykh8o" path="res://img/images.png" id="5_8a2lf"]
 [ext_resource type="Texture2D" uid="uid://cd03prxw30cmg" path="res://img/383745-200.png" id="5_lyphu"]
 [ext_resource type="Texture2D" uid="uid://n6e8dgs7q4n5" path="res://img/5793865-200.png" id="6_l00dv"]
 [ext_resource type="Texture2D" uid="uid://b1htckhiamrm6" path="res://img/dig_plan.png" id="6_n5ks4"]
-[ext_resource type="Script" path="res://script/panel_ground.gd" id="10_vedk5"]
+[ext_resource type="Script" path="res://panel_ground.gd" id="10_vedk5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_41ier"]
 bg_color = Color(0.188235, 0.188235, 0.188235, 0.917647)
