@@ -135,7 +135,7 @@ func generate_expected_res_info(UI_Container, item_list):
 	# create and hide info scene piture game ressource (pic+text)
 	if UI_Container.get_child_count()<item_list.size():
 		for i in range(item_list.size()):
-			var res16 = preload("res://pic16.tscn").instantiate()
+			var res16 = preload("res://scene/pic16.tscn").instantiate()
 			res16.visible = false
 			UI_Container.add_child(res16)
 	
