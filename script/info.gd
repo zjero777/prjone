@@ -32,6 +32,12 @@ var UI_building_name
 var UI_building_demolition
 var UI_building_eff
 
+var UI_recipe
+var UI_recipe_name
+var UI_recipe_pic
+var UI_in_res
+var UI_out_res
+
 var last_coord: Vector2i = Vector2i.ZERO
 
 # Called when the node enters the scene tree for the first time.
@@ -65,6 +71,12 @@ func _ready():
 	UI_building_eff = find_child("bl_eff")
 	UI_building_demolition = find_child("bl_count")
 
+	UI_recipe = find_child("Recipe")
+	UI_recipe_name = find_child("recipe_name")
+	UI_recipe_pic = find_child("recipe_pic") 
+	UI_in_res = find_child("UI_in_res")
+	UI_out_res = find_child("UI_out_res")
+	
 	#get_node("/root/Main/UI/CanvasLayer/UI_Ground")
 	Ground.connect("update_hover_info", _on_update_hover_info)
 
@@ -73,18 +85,19 @@ func _ready():
 func _process(_delta):
 	pass
 
-func  _unhandled_key_input(event):
-	if event.is_action("down") or event.is_action("left") or event.is_action("right") or event.is_action("up"):
-		UI_terrain.hide()
-		UI_block.hide()
-		UI_building.hide()
-
-func _gui_input(event):
-	#print_debug(_event)
+func hide_info():
 	UI_terrain.hide()
 	UI_block.hide()
 	UI_building.hide()
+	UI_recipe.hide()
 	
+
+func  _unhandled_key_input(event):
+	if event.is_action("down") or event.is_action("left") or event.is_action("right") or event.is_action("up"):
+		hide_info()
+func _gui_input(event):
+	#print_debug(_event)
+	hide_info()	
 
 func _shortcut_input(event):
 	#print_debug(event)
@@ -133,6 +146,9 @@ func _on_update_hover_info(mouse_hover_tile, cell):
 		UI_building_pic.texture = tile.get_custom_data("texture")
 		UI_building_demolition.text = str(data.demolition) + " сек."
 		UI_building_eff.text = str(data.efficiency)
+		
+		set_info_view(UI_recipe, 0)
+		
 	else:
 		set_info_view(UI_building,2)
 

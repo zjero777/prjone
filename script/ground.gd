@@ -39,13 +39,15 @@ func _init():
 
 	#generate sources by data
 	#id_source, data_key, path to images
-	
-	add_to_tileset(0, Data.data.terrain_type, "res://img/terrains")
-	add_to_tileset(1, Data.data.block_type, "res://img/blocks")
-	add_to_tileset(2, Data.data.factory_type, "res://img/buildings")
+
 	
 
 func _ready():
+
+	add_to_tileset(0, Data.data.terrain_type, "res://img/terrains")
+	add_to_tileset(1, Data.data.block_type, "res://img/blocks")
+	add_to_tileset(2, Data.data.factory_type, "res://img/buildings")
+
 		
 	for i in range(Global.world_size.x):
 		for j in range(Global.world_size.y):
@@ -136,7 +138,7 @@ func generate_expected_res_info(UI_Container, item_list):
 	# create and hide info scene piture game ressource (pic+text)
 	if UI_Container.get_child_count()<item_list.size():
 		for i in range(item_list.size()):
-			var res16 = preload("res://pic16.tscn").instantiate()
+			var res16 = preload("res://scene/pic16.tscn").instantiate()
 			res16.visible = false
 			UI_Container.add_child(res16)
 	

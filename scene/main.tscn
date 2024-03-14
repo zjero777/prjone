@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://cutrwtln1e2ni"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_cd40l"]
-[ext_resource type="Script" path="res://cells_data.gd" id="2_airf2"]
-[ext_resource type="Script" path="res://Factories.gd" id="3_6prrt"]
-[ext_resource type="Script" path="res://bots.gd" id="4_es0id"]
-[ext_resource type="Script" path="res://camera.gd" id="5_p6gg5"]
-[ext_resource type="PackedScene" uid="uid://vaudtwu5wvn8" path="res://bg.tscn" id="6_70c1i"]
-[ext_resource type="PackedScene" uid="uid://5uocvahkc0i" path="res://ui.tscn" id="7_npw8r"]
+[ext_resource type="Script" path="res://script/main.gd" id="1_cd40l"]
+[ext_resource type="Script" path="res://script/cells_data.gd" id="2_airf2"]
+[ext_resource type="Script" path="res://script/Factories.gd" id="3_6prrt"]
+[ext_resource type="Script" path="res://script/bots.gd" id="4_es0id"]
+[ext_resource type="Script" path="res://script/camera.gd" id="5_p6gg5"]
+[ext_resource type="PackedScene" uid="uid://vaudtwu5wvn8" path="res://scene/bg.tscn" id="6_70c1i"]
+[ext_resource type="PackedScene" uid="uid://5uocvahkc0i" path="res://scene/ui.tscn" id="7_npw8r"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_cd40l")
