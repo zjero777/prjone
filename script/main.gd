@@ -16,7 +16,7 @@ func create_new_map():
 	# generate terrain
 	
 	# test set factory
-	factories.add(3, Vector2i(10,10))
+	factories.add(18, Vector2i(10,10))
 	factories.add(4, Vector2i(4,3))
 	factories.add(1, Vector2i(1,6))
 	factories.add(1, Vector2i(3,6))

@@ -138,16 +138,31 @@ func _on_update_hover_info(mouse_hover_tile, cell):
 		set_info_view(UI_building,0)
 		tile = cell.Buildings.tile_info
 		var id = tile.get_custom_data("id")
-		var type = "factory_type"
-		var data = Data.get_by_id(type, id)
 		var building: Factory = cell.Buildings.building
 		
 		UI_building_name.text = building.name_building
 		UI_building_pic.texture = tile.get_custom_data("texture")
-		UI_building_demolition.text = str(data.demolition) + " сек."
-		UI_building_eff.text = str(data.efficiency)
+		UI_building_demolition.text = str(building.demolition) + " сек."
+		UI_building_eff.text = str(building.efficiency)
 		
-		set_info_view(UI_recipe, 0)
+		if building.recipe:
+			UI_recipe.show()
+			var recipe: Recipe = building.recipe
+			UI_recipe_name.text = str(recipe.recipe_name)
+			UI_recipe_pic.texture = recipe.pic
+			if recipe.res_in.size()>0:
+				generate_res_info_obj(UI_in_res, recipe.res_in)
+				UI_in_res.show()
+			else:
+				UI_in_res.hide()
+			if recipe.res_out.size()>0:
+				generate_res_info_obj(UI_out_res, recipe.res_out)
+				UI_out_res.show()
+			else:
+				UI_out_res.hide()
+		else:
+			UI_recipe.hide()
+
 		
 	else:
 		set_info_view(UI_building,2)
@@ -197,4 +212,25 @@ func _on_update_hover_info(mouse_hover_tile, cell):
 		UI_terrain.show()
 		UI_terrain_expected.hide()
 		UI_terrain_working.hide()
+
+func generate_res_info_obj(UI_Container, items: Array):
+	# create and hide info scene piture game ressource (pic+text)
+	if UI_Container.get_child_count()<items.size():
+		for i in range(items.size()):
+			var res16 = preload("res://scene/pic16.tscn").instantiate()
+			res16.hide()
+			UI_Container.add_child(res16)
+		pass
+	
+	for ui_pic in UI_Container.get_children():
+		ui_pic.hide()
+	
+	var i = 0
+	for item in items:
+		var ui_pic = UI_Container.get_child(i)
+		ui_pic.texture = item.resource.pic
+		var ui_label: Label = ui_pic.get_child(0)
+		ui_label.text = str(item.count)
+		ui_pic.show()
+		i = i + 1
 

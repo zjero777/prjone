@@ -1,8 +1,8 @@
-class_name Recept
+class_name Recipe
 
 
 var id: int
-var recept_name: String
+var recipe_name: String
 var pic: Texture2D
 var res_in = []
 var res_out = []
@@ -11,7 +11,7 @@ var work_time: int
 func select(_id: int):
 	id = _id
 	var data = Data.get_by_id("recipes", id)
-	recept_name = data.name
+	recipe_name = data.name
 	pic = load(Global.img_recept_directory+data.pic)
 	if data.has("in"):
 		res_in = _deserialize_item_array(data.in)

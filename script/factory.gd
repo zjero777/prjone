@@ -6,7 +6,9 @@ signal factory_add(factory: Factory)
 var type: String = ""
 var coord: Vector2i = Vector2i.ZERO
 var name_building = ""
-var recept: Recept = Recept.new()
+var demolition: int
+var efficiency: float
+var recipe: Recipe = Recipe.new()
 
 
 func setup(_type: int, _coord: Vector2i):
@@ -15,8 +17,10 @@ func setup(_type: int, _coord: Vector2i):
 	var data = Data.get_by_id("factory_type", type)
 	#generate name
 	name_building = data.name+"%05d" % randi_range(0, 9999)
+	demolition = data.demolition
+	efficiency = data.efficiency
 	#set recept
-	recept.select(data.use_recipes.selected_id)
+	recipe.select(data.use_recipes.selected_id)
 
 
 # Called when the node enters the scene tree for the first time.

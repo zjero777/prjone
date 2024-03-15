@@ -43,7 +43,6 @@ func _init():
 	
 
 func _ready():
-
 	add_to_tileset(0, Data.data.terrain_type, "res://img/terrains")
 	add_to_tileset(1, Data.data.block_type, "res://img/blocks")
 	add_to_tileset(2, Data.data.factory_type, "res://img/buildings")
@@ -153,7 +152,7 @@ func generate_expected_res_info(UI_Container, item_list):
 		var ui_label: Label = ui_pic.get_child(0)
 		ui_label.text = str(item.count)
 		ui_pic.show()
-		i =+ 1
+		i = i + 1
 
 func add_size_left(size_square, new_add_square):
 	return(Vector2i(size_square.x+new_add_square.x, max(size_square.y, new_add_square.y)))
