@@ -17,8 +17,6 @@ bg_color = Color(0.188235, 0.188235, 0.188235, 0.917647)
 
 [sub_resource type="LabelSettings" id="LabelSettings_skosk"]
 font_size = 15
-shadow_size = 5
-shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_wqvjr"]
 font_size = 10
@@ -81,7 +79,6 @@ theme_override_constants/separation = 10
 [node name="Building" type="VBoxContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_constants/separation = 0
 
 [node name="Building_View" type="MarginContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building"]
 layout_mode = 2

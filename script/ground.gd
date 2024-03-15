@@ -144,15 +144,15 @@ func generate_expected_res_info(UI_Container, item_list):
 	for ui_pic in UI_Container.get_children():
 		ui_pic.visible = false
 	
-	var i = 0
-	for item in item_list:
+	#var i = 0
+	for i in item_list.size():
 		var ui_pic = UI_Container.get_child(i)
-		var loot_texture = get_texture_by_id("block_type", item.id)
+		var loot_texture = get_texture_by_id("block_type", item_list[i].id)
 		ui_pic.texture = loot_texture
 		var ui_label: Label = ui_pic.get_child(0)
-		ui_label.text = str(item.count)
+		ui_label.text = str(item_list[i].count)
 		ui_pic.show()
-		i = i + 1
+		#i += 1
 
 func add_size_left(size_square, new_add_square):
 	return(Vector2i(size_square.x+new_add_square.x, max(size_square.y, new_add_square.y)))

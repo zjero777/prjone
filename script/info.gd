@@ -148,7 +148,7 @@ func _on_update_hover_info(mouse_hover_tile, cell):
 		if building.recipe:
 			UI_recipe.show()
 			var recipe: Recipe = building.recipe
-			UI_recipe_name.text = str(recipe.recipe_name)
+			UI_recipe_name.text = recipe.recipe_name
 			UI_recipe_pic.texture = recipe.pic
 			if recipe.res_in.size()>0:
 				generate_res_info_obj(UI_in_res, recipe.res_in)
@@ -225,12 +225,10 @@ func generate_res_info_obj(UI_Container, items: Array):
 	for ui_pic in UI_Container.get_children():
 		ui_pic.hide()
 	
-	var i = 0
-	for item in items:
+	for i in items.size():
 		var ui_pic = UI_Container.get_child(i)
-		ui_pic.texture = item.resource.pic
+		ui_pic.texture = items[i].resource.pic
 		var ui_label: Label = ui_pic.get_child(0)
-		ui_label.text = str(item.count)
+		ui_label.text = str(items[i].count)
 		ui_pic.show()
-		i = i + 1
 
