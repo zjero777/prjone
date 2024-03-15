@@ -1,20 +1,16 @@
 extends TileMap
 
 signal update_hover_info(coord, cell_data)
-
-var s_building = Global.source_tile.Buildings 
-var s_blocl = Global.source_tile.Blocks 
-var s_terrain = Global.source_tile.Terrain
-
-var l_building = Global.tile_layers.Buildings 
-var l_blocl = Global.tile_layers.Blocks 
-var l_terrain = Global.tile_layers.Terrain 
+signal update_select_info(cell_daata)
 
 var mouse_hover_tile = null
 var cells: Cells_data
+
+#var selection: Rect2i
+
 @onready var factories = get_node("/root/Main/Factories")
 @onready var bots = get_node("/root/Main/Bots")
-
+@onready var UI_selector: ReferenceRect = $"../UI_selector"
 
 func _init():
 	#create layers
@@ -47,7 +43,13 @@ func _ready():
 	add_to_tileset(1, Data.data.block_type, "res://img/blocks")
 	add_to_tileset(2, Data.data.factory_type, "res://img/buildings")
 
-		
+	var s_building = Global.source_tile.Buildings 
+	var s_blocl = Global.source_tile.Blocks 
+	var s_terrain = Global.source_tile.Terrain
+	var l_building = Global.tile_layers.Buildings 
+	var l_blocl = Global.tile_layers.Blocks 
+	var l_terrain = Global.tile_layers.Terrain 
+
 	for i in range(Global.world_size.x):
 		for j in range(Global.world_size.y):
 			set_cell(l_terrain, Vector2i(i,j), s_terrain, Vector2i(2,0))
@@ -104,20 +106,31 @@ func _unhandled_input(event):
 
 	if event is InputEventMouse:
 		mouse_hover_tile = floor(get_global_mouse_position() / 64)
-		#{terrain - tile_info, resource: Resource; block - tile_info, count; building - tile_info, building: Building}
 		#print_debug(mouse_hover_tile)
 		var cell = cells.inspect(mouse_hover_tile) 
-		#if cell:
 		emit_signal("update_hover_info", mouse_hover_tile, cell)
 		
 	
 
 	if event.is_action_pressed("select"):
 		#print_debug(mouse_hover_tile)
-		bots.order(0, "move", mouse_hover_tile)
+		#bots.order(0, "move", mouse_hover_tile)
+		var cell = cells.inspect(mouse_hover_tile) 
+		# building select
+		if cell.Buildings:
+			var select_pos = Vector2i(map_to_local(cell.Buildings.coord))-Vector2i(Global.tile_size/2)
+			var select_size = cell.Buildings.size*Global.tile_size
+			UI_selector.set_position(select_pos)
+			UI_selector.set_size(select_size)
+			UI_selector.show()
+			emit_signal("update_select_info", cell)
+			pass
 		pass
 		
 	if event.is_action_pressed("clear_selection"):
+		if UI_selector.visible:
+			UI_selector.hide()
+			emit_signal("update_select_info", null)
 		pass
 	
 	

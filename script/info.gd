@@ -38,12 +38,15 @@ var UI_recipe_pic
 var UI_in_res
 var UI_out_res
 
+var UI_selector: ReferenceRect
+
 var last_coord: Vector2i = Vector2i.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Ground = $/root/Main/Ground
 	cells_data = $/root/Main/Cells_data
+	UI_selector = $"/root/Main/UI_selector"
 	
 	UI_terrain = find_child("Terrain")
 	UI_terrain_view = find_child("Terraon_View")
@@ -79,6 +82,7 @@ func _ready():
 	
 	#get_node("/root/Main/UI/CanvasLayer/UI_Ground")
 	Ground.connect("update_hover_info", _on_update_hover_info)
+	Ground.connect("update_select_info", _on_update_select_info)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -92,12 +96,15 @@ func hide_info():
 	UI_recipe.hide()
 	
 
-func  _unhandled_key_input(event):
+func _unhandled_key_input(event):
+	if UI_selector.visible: return
 	if event.is_action("down") or event.is_action("left") or event.is_action("right") or event.is_action("up"):
 		hide_info()
+
 func _gui_input(event):
 	#print_debug(_event)
-	hide_info()	
+	if UI_selector.visible: return
+	hide_info()
 
 func _shortcut_input(event):
 	#print_debug(event)
@@ -105,6 +112,8 @@ func _shortcut_input(event):
 	#if event.is_action("down") or event.is_action("left") or event.is_action("right") or event.is_action("up"):
 		#get_tree().get_root().set_input_as_handled()
 	pass
+	
+	
 func set_info_view(rootUI: Control, mode):
 # rootUI:set node, mode: (0-all cildren view 1-root only 3-hide)
 	rootUI.show()
@@ -118,7 +127,17 @@ func set_info_view(rootUI: Control, mode):
 	else:
 		rootUI.hide()
 
+func _on_update_select_info(cell):
+	UI_terrain.hide()
+	UI_building.hide()
+	UI_block.hide()
+	if cell and cell.Buildings:
+		UI_building.show()
+		update_building_info(cell)
+
+
 func _on_update_hover_info(mouse_hover_tile, cell):
+	if UI_selector and UI_selector.visible: return
 	
 	if Vector2i(mouse_hover_tile)==last_coord: return
 	last_coord = mouse_hover_tile
@@ -132,58 +151,6 @@ func _on_update_hover_info(mouse_hover_tile, cell):
 	if cell.Bots:
 		
 		pass
-	
-	if cell.Buildings:
-		
-		set_info_view(UI_building,0)
-		tile = cell.Buildings.tile_info
-		var id = tile.get_custom_data("id")
-		var building: Factory = cell.Buildings.building
-		
-		UI_building_name.text = building.name_building
-		UI_building_pic.texture = tile.get_custom_data("texture")
-		UI_building_demolition.text = str(building.demolition) + " сек."
-		UI_building_eff.text = str(building.efficiency)
-		
-		if building.recipe:
-			UI_recipe.show()
-			var recipe: Recipe = building.recipe
-			UI_recipe_name.text = recipe.recipe_name
-			UI_recipe_pic.texture = recipe.pic
-			if recipe.res_in.size()>0:
-				generate_res_info_obj(UI_in_res, recipe.res_in)
-				UI_in_res.show()
-			else:
-				UI_in_res.hide()
-			if recipe.res_out.size()>0:
-				generate_res_info_obj(UI_out_res, recipe.res_out)
-				UI_out_res.show()
-			else:
-				UI_out_res.hide()
-		else:
-			UI_recipe.hide()
-
-		
-	else:
-		set_info_view(UI_building,2)
-
-
-	if cell.Blocks:
-		
-		if 	cell.Buildings:
-			set_info_view(UI_block,1)
-		else:
-			set_info_view(UI_block,0)
-
-		tile = cell.Blocks.tile_info
-		var _type = "block_type"
-		UI_block_name.text = tile.get_custom_data("name")
-		UI_block_pic.texture = tile.get_custom_data("texture") 
-	else:
-		set_info_view(UI_block,2)
-
-
-
 	if cell.Terrain:
 		if 	cell.Blocks:
 			set_info_view(UI_terrain,1)
@@ -212,6 +179,58 @@ func _on_update_hover_info(mouse_hover_tile, cell):
 		UI_terrain.show()
 		UI_terrain_expected.hide()
 		UI_terrain_working.hide()
+	
+	if cell.Buildings:
+		update_building_info(cell)
+	else:
+		set_info_view(UI_building,2)
+
+
+	if cell.Blocks:
+		
+		if 	cell.Buildings:
+			set_info_view(UI_block,1)
+		else:
+			set_info_view(UI_block,0)
+
+		tile = cell.Blocks.tile_info
+		var _type = "block_type"
+		UI_block_name.text = tile.get_custom_data("name")
+		UI_block_pic.texture = tile.get_custom_data("texture") 
+	else:
+		set_info_view(UI_block,2)
+
+
+func update_building_info(cell):
+
+		set_info_view(UI_building,0)
+		var tile = cell.Buildings.tile_info
+		var id = tile.get_custom_data("id")
+		var building: Factory = cell.Buildings.building
+		
+		UI_building_name.text = building.name_building
+		UI_building_pic.texture = tile.get_custom_data("texture")
+		UI_building_demolition.text = str(building.demolition) + " сек."
+		UI_building_eff.text = str(building.efficiency)
+		
+		if building.recipe:
+			UI_recipe.show()
+			var recipe: Recipe = building.recipe
+			UI_recipe_name.text = recipe.recipe_name
+			UI_recipe_pic.texture = recipe.pic
+			if recipe.res_in.size()>0:
+				generate_res_info_obj(UI_in_res, recipe.res_in)
+				UI_in_res.show()
+			else:
+				UI_in_res.hide()
+			if recipe.res_out.size()>0:
+				generate_res_info_obj(UI_out_res, recipe.res_out)
+				UI_out_res.show()
+			else:
+				UI_out_res.hide()
+		else:
+			UI_recipe.hide()
+
 
 func generate_res_info_obj(UI_Container, items: Array):
 	# create and hide info scene piture game ressource (pic+text)
