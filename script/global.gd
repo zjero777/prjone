@@ -3,6 +3,7 @@ extends Node
 enum tile_type {Terrain, Blocks, Buildings}
 enum tile_layers {Terrain, Blocks, Buildings}
 enum source_tile {Terrain, Blocks, Buildings}
+enum {inc_reserve_operation, dec_reserve_operation}
 
 const img_directory = ["res://img/terrains", "res://img/blocks", "res://img/buildings"]
 const SAVE_FILE_PATH = "res://save/save.dat"

@@ -35,6 +35,7 @@ var UI_building_eff
 var UI_recipe
 var UI_recipe_name
 var UI_recipe_pic
+var UI_recipe_time
 var UI_in_res
 var UI_out_res
 
@@ -77,6 +78,7 @@ func _ready():
 	UI_recipe = find_child("Recipe")
 	UI_recipe_name = find_child("recipe_name")
 	UI_recipe_pic = find_child("recipe_pic") 
+	UI_recipe_time = find_child("UI_rec_time") 
 	UI_in_res = find_child("UI_in_res")
 	UI_out_res = find_child("UI_out_res")
 	
@@ -218,6 +220,7 @@ func update_building_info(cell):
 			var recipe: Recipe = building.recipe
 			UI_recipe_name.text = recipe.recipe_name
 			UI_recipe_pic.texture = recipe.pic
+			UI_recipe_time.text = str(recipe.work_time)
 			if recipe.res_in.size()>0:
 				generate_res_info_obj(UI_in_res, recipe.res_in)
 				UI_in_res.show()

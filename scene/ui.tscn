@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://5uocvahkc0i"]
+[gd_scene load_steps=16 format=3 uid="uid://5uocvahkc0i"]
 
 [ext_resource type="Script" path="res://script/ui.gd" id="1_s7adk"]
 [ext_resource type="Script" path="res://script/fps.gd" id="1_vnghm"]
@@ -20,6 +20,13 @@ font_size = 15
 
 [sub_resource type="LabelSettings" id="LabelSettings_wqvjr"]
 font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_et4dh"]
+font_size = 11
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -216,6 +223,23 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("9_k51qj")
 expand_mode = 1
+
+[node name="UI_rec_time" type="Label" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building/Recipe/VBoxContainer/Recipe_digram/HBoxContainer/icon"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -6.0
+offset_bottom = 6.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "1"
+label_settings = SubResource("LabelSettings_et4dh")
+horizontal_alignment = 2
+vertical_alignment = 2
 
 [node name="UI_out_res" type="HFlowContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building/Recipe/VBoxContainer/Recipe_digram/HBoxContainer"]
 layout_mode = 2
