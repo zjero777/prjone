@@ -36,7 +36,9 @@ func stop():
 	idle = true
 	pass
 
-func set_res_items(res_in, res_out) -> Error:
+func set_res_items(res_in: Array, res_out: Array) -> Error:
+	#var res_in = _res_in.duplicate(true)
+	#var res_out = _res_out.duplicate(true)
 	var in_result
 	var out_result
 	if res_in.size()==0: 
@@ -60,6 +62,12 @@ func set_res_items(res_in, res_out) -> Error:
 	return(OK)
 	
 func get_res_items(res_in, res_out):
+	if factory.port_in:
+		factory.port_in.remove_reserve(factory.coord, factory.coord)
+		
+	if factory.port_out:
+		factory.port_out.create_items_from_reserve(factory.coord, factory.coord)
+	
 	pass
 	
 

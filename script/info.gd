@@ -39,6 +39,11 @@ var UI_recipe_time
 var UI_in_res
 var UI_out_res
 
+var UI_store_in
+var UI_store_in_bar
+var UI_store_out
+var UI_store_out_bar
+
 var UI_selector: ReferenceRect
 
 var last_coord: Vector2i = Vector2i.ZERO
@@ -81,6 +86,11 @@ func _ready():
 	UI_recipe_time = find_child("UI_rec_time") 
 	UI_in_res = find_child("UI_in_res")
 	UI_out_res = find_child("UI_out_res")
+	
+	UI_store_in = find_child("UI_store_in")
+	UI_store_in_bar = find_child("UI_store_in_bar")
+	UI_store_out = find_child("UI_store_out")
+	UI_store_out_bar = find_child("UI_store_out_bar")
 	
 	#get_node("/root/Main/UI/CanvasLayer/UI_Ground")
 	Ground.connect("update_hover_info", _on_update_hover_info)
@@ -136,6 +146,7 @@ func _on_update_select_info(cell):
 	if cell and cell.Buildings:
 		UI_building.show()
 		update_building_info(cell)
+		
 
 
 func _on_update_hover_info(mouse_hover_tile, cell):
@@ -233,7 +244,20 @@ func update_building_info(cell):
 				UI_out_res.hide()
 		else:
 			UI_recipe.hide()
+		
+		if building.port_in:
+			UI_store_in.show()
+			generate_res_info_store(UI_store_in_bar, building.port_in.cells)
+		else:
+			UI_store_in.hide()
 
+		if building.port_out:
+			UI_store_out.show()
+			generate_res_info_store(UI_store_out_bar, building.port_out.cells)
+		else:
+			UI_store_out.hide()
+
+		
 
 func generate_res_info_obj(UI_Container, items: Array):
 	# create and hide info scene piture game ressource (pic+text)
@@ -254,3 +278,36 @@ func generate_res_info_obj(UI_Container, items: Array):
 		ui_label.text = str(items[i].count)
 		ui_pic.show()
 
+func generate_res_info_store(UI_Container, cells):
+	# create and hide info scene piture game ressource (pic+text)
+	if UI_Container.get_child_count()<cells.size():
+		for i in range(cells.size()):
+			var res16 = preload("res://scene/pic16.tscn").instantiate()
+			res16.hide()
+			UI_Container.add_child(res16)
+		pass
+	
+	for ui_pic in UI_Container.get_children():
+		ui_pic.hide()
+	
+	var i=0
+	for cell in cells:
+		var availible = cells[cell].available
+		var reserve = cells[cell].reserve
+		
+		var ui_pic = UI_Container.get_child(i)
+		ui_pic.texture = cells[cell].resource.pic
+		
+		
+		var ui_label: Label = ui_pic.get_child(0)
+		ui_label.text = ""
+		
+		if availible:
+			ui_label.text = str(cells[cell].available.count)
+		
+		if reserve:
+			for key in reserve.dictonary:
+				ui_label.text = ui_label.text+"+"+str(reserve.dictonary[key].count)
+		
+		ui_pic.show()
+		i += 1

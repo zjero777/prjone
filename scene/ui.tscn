@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://5uocvahkc0i"]
+[gd_scene load_steps=18 format=3 uid="uid://5uocvahkc0i"]
 
 [ext_resource type="Script" path="res://script/ui.gd" id="1_s7adk"]
 [ext_resource type="Script" path="res://script/fps.gd" id="1_vnghm"]
@@ -10,7 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://n6e8dgs7q4n5" path="res://img/5793865-200.png" id="6_l00dv"]
 [ext_resource type="Texture2D" uid="uid://b1htckhiamrm6" path="res://img/dig_plan.png" id="6_n5ks4"]
 [ext_resource type="Texture2D" uid="uid://dahfrnpimvc13" path="res://img/2640742.png" id="9_k51qj"]
+[ext_resource type="Texture2D" uid="uid://c76nfx2h58s0v" path="res://img/warehouse_in_icon_149848.png" id="10_1mrbx"]
 [ext_resource type="Script" path="res://script/panel_ground.gd" id="10_vedk5"]
+[ext_resource type="Texture2D" uid="uid://dqfpnrmwn7wbf" path="res://img/warehouse_out_icon_149847.png" id="11_ygfgw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_41ier"]
 bg_color = Color(0.188235, 0.188235, 0.188235, 0.917647)
@@ -242,6 +244,56 @@ horizontal_alignment = 2
 vertical_alignment = 2
 
 [node name="UI_out_res" type="HFlowContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building/Recipe/VBoxContainer/Recipe_digram/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 5
+
+[node name="UI_store_in" type="MarginContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building/UI_store_in"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="icon" type="TextureRect" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building/UI_store_in/HBoxContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("10_1mrbx")
+expand_mode = 1
+
+[node name="UI_store_in_bar" type="HFlowContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building/UI_store_in/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 5
+
+[node name="UI_store_out" type="MarginContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building/UI_store_out"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="icon" type="TextureRect" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building/UI_store_out/HBoxContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("11_ygfgw")
+expand_mode = 1
+
+[node name="UI_store_out_bar" type="HFlowContainer" parent="CanvasLayer/Info/MarginContainer/VBoxContainer/Building/UI_store_out/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 0
