@@ -74,6 +74,7 @@ func cancel_reserve(reserve_operation, source: Vector2i, destination: Vector2i):
 	
 		for cell in cells:
 			var reserve = cells[cell].reserve
+			
 			var key = reserve.get_key(source, destination)
 			
 			if reserve.dictonary.has(key):

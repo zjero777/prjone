@@ -52,7 +52,7 @@ var last_coord: Vector2i = Vector2i.ZERO
 func _ready():
 	Ground = $/root/Main/Ground
 	cells_data = $/root/Main/Cells_data
-	UI_selector = $"/root/Main/UI_selector"
+	UI_selector = $"../../UI_selector"
 	
 	UI_terrain = find_child("Terrain")
 	UI_terrain_view = find_child("Terraon_View")
@@ -94,7 +94,8 @@ func _ready():
 	
 	#get_node("/root/Main/UI/CanvasLayer/UI_Ground")
 	Ground.connect("update_hover_info", _on_update_hover_info)
-	Ground.connect("update_select_info", _on_update_select_info)
+
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -138,15 +139,6 @@ func set_info_view(rootUI: Control, mode):
 			rootUI.get_children()[node_i].hide()
 	else:
 		rootUI.hide()
-
-func _on_update_select_info(cell):
-	UI_terrain.hide()
-	UI_building.hide()
-	UI_block.hide()
-	if cell and cell.Buildings:
-		UI_building.show()
-		update_building_info(cell)
-		
 
 
 func _on_update_hover_info(mouse_hover_tile, cell):
@@ -305,7 +297,8 @@ func generate_res_info_store(UI_Container, cells):
 		if availible:
 			ui_label.text = str(cells[cell].available.count)
 		
-		if reserve:
+		if reserve!=null:
+			#print_debug(reserve)
 			for key in reserve.dictonary:
 				ui_label.text = ui_label.text+"+"+str(reserve.dictonary[key].count)
 		

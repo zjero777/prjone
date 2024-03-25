@@ -1,7 +1,7 @@
 extends TileMap
 
 signal update_hover_info(coord, cell_data)
-signal update_select_info(cell_daata)
+signal update_select_info(tilemap, cell_daata)
 
 var mouse_hover_tile = null
 var cells: Cells_data
@@ -10,7 +10,6 @@ var cells: Cells_data
 
 @onready var factories = get_node("/root/Main/Factories")
 @onready var bots = get_node("/root/Main/Bots")
-@onready var UI_selector: ReferenceRect = $"../UI_selector"
 
 func _init():
 	#create layers
@@ -118,20 +117,12 @@ func _unhandled_input(event):
 		var cell = cells.inspect(mouse_hover_tile) 
 		# building select
 		if cell.Buildings:
-			var select_pos = Vector2i(map_to_local(cell.Buildings.coord))-Vector2i(Global.tile_size/2)
-			var select_size = cell.Buildings.size*Global.tile_size
-			UI_selector.set_position(select_pos)
-			UI_selector.set_size(select_size)
-			UI_selector.show()
-			emit_signal("update_select_info", cell)
+			emit_signal("update_select_info", self, cell)
 			pass
 		pass
 		
 	if event.is_action_pressed("clear_selection"):
-		if UI_selector.visible:
-			UI_selector.hide()
-			emit_signal("update_select_info", null)
-		pass
+		emit_signal("update_select_info", self, null)
 	
 	
 func get_texture_by_id(type, id: int):

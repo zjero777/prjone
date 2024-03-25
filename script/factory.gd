@@ -46,6 +46,7 @@ func _physics_process(delta):
 		var result = labor.set_res_items(recipe.res_in, recipe.res_out)
 		if result == OK:
 			labor.start()
+			#emit_signal("store_update", self)
 		if result == ERR_CANT_ACQUIRE_RESOURCE:
 			#set request (coord, res)
 			#push_error("no_in_res", recipe.res_in)
@@ -56,5 +57,6 @@ func _physics_process(delta):
 	if labor.complete:
 		# set provider (coord, res)
 		labor.get_res_items(recipe.res_in, recipe.res_out)
+		#emit_signal("store_update", self)
 		labor.stop()
 	pass
