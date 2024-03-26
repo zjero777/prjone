@@ -43,7 +43,7 @@ func _physics_process(delta):
 	if labor.work: return
 	if labor.idle:
 		#reserve in res
-		var result = labor.set_res_items(recipe.res_in, recipe.res_out)
+		var result = labor.set_res_items(recipe)
 		if result == OK:
 			labor.start()
 			#emit_signal("store_update", self)
@@ -56,7 +56,7 @@ func _physics_process(delta):
 			pass
 	if labor.complete:
 		# set provider (coord, res)
-		labor.get_res_items(recipe.res_in, recipe.res_out)
+		labor.get_res_items()
 		#emit_signal("store_update", self)
 		labor.stop()
 	pass
